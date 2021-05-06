@@ -1,7 +1,11 @@
 
 
 // page
-body { font-size: 14px;}
+body {
+	font-size: 14px;
+	background-image: url('~images/background.jpg');
+	background-size: 1440px auto;
+}
 
 header.header {
 	position: relative;
@@ -19,6 +23,10 @@ header.header {
 
 main.main {
   margin: 2em;
+	margin-left: 218px;
+	margin-top: 132px;
+	background-color: #fff;
+	min-height: 480px;
 }
 
 .miniui-summary {

@@ -5,19 +5,28 @@ import Lister, {Column, withLister} from '~/../../react-lister/dist/index.js';
 import'~/../../react-lister/dist/lister.css';
 import UserActions from '~/components/user/UserActions';
 
+const options = {
+  order: true, // 是否需要排序
+  visibility: true, // 是否可见
+  width: 200, // 列表的初始宽度，默认 200
+  resize: true // 是否允许拖动改变列宽度
+}
+
+const userColumns = [
+  new Column('ID', 'id', row => <React.Fragment>{row.id}</React.Fragment>, {...options, width: 60}),
+  new Column('用户', 'name', row => <React.Fragment>{row.name}</React.Fragment>, {...options, getter: Column.Getter('name')}),
+  new Column('邮箱', 'email', row => <span>{row.email}</span>, {...options, getter: Column.Getter('email')}),
+  new Column('角色', 'type', row => <span>{row.type}</span>, options),
+  new Column('操作', 'option', row => <UserActions row={row} />)
+]
+
 class UserList extends React.Component {
-  liste = React.createRef();
 
   constructor(props) {
     super(props);
     this.state = {
       selectedIDs: []
     };
-  }
-
-  toggleSelectAll() {
-    console.log("this.liste", this.liste);
-    this.liste.current.toggleSelectAll();
   }
 
   handleSelect = (selectedIDs: Array<string>) => {
@@ -27,48 +36,32 @@ class UserList extends React.Component {
   };
 
   render() {
-
-    const {toggleSelectAll, rows, reload, createRef, columns} = this.props;
-
+    const {toggleSelectAll, rows, reload, paginationMode, createRef, columns, total} = this.props;
     const {selectedIDs} = this.state;
-
-    console.log("columns-", columns);
 
     return (
       <div>
         <Lister
           ref={createRef}
           rows={rows}
-          total={103}
+          total={total}
           columns={columns}
           page={1}
           selectable={true}
           onSelect={this.handleSelect}
+          paginationMode={paginationMode}
           reload={reload}
         >
           <ButtonGroup>
-            <Button color="blue" onClick={toggleSelectAll}>全选</Button>
+            <Button onClick={toggleSelectAll}>全选</Button>
           </ButtonGroup>
-          <FormGroup>
-            <Input type="text" />
-            <Button color="teal">搜索</Button>
-          </FormGroup>
+          <ButtonGroup>
+            <Button color="red">删除{selectedIDs.length ? `(${selectedIDs.length})` : ''}</Button>
+          </ButtonGroup>
         </Lister>
       </div>
     );
   }
 }
 
-const options = {
-  order: true, // 是否需要排序
-  visibility: true, // 是否可见
-  width: 200, // 列表的初始宽度，默认 200
-  resize: true // 是否允许拖动改变列宽度
-}
-
-export default withLister(UserList, 'user', [
-  new Column('用户', 'name', row => <span>{row.name}</span>, options),
-  new Column('邮箱', 'email', row => <span>{row.email}</span>, options),
-  new Column('角色', 'type', row => <span>{row.type}</span>, options),
-  new Column('操作', null, row => <UserActions row={row} />, {resize: false})
-]);
+export default withLister(UserList, 'user', userColumns);

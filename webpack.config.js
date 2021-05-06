@@ -39,7 +39,8 @@ module.exports = {
     resolve: {
         modules: [path.resolve('node_modules')],
         alias: {
-          '~': path.resolve(__dirname, './app')
+          '~': path.resolve(__dirname, './app'),
+          'images': path.resolve(__dirname, './app/images')
         },
         extensions: ['.js', '.jsx', '.scss', '.css'] // 配置省略后缀名
     },
@@ -106,6 +107,7 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         limit: 50 * 1024,
+                        fallback: 'file-loader', //大于limit限制的将转交给指定的loader处理，开启这里后就无需再单独配置file-loader
                         outputPath: './',
                     }
                 }
@@ -128,13 +130,16 @@ module.exports = {
         }),
 
         new MiniCssExtractPlugin({
-            filename: 'css/[name].min.css'
+            filename: '[name].min.css'
         }),
 
         new FileManagerPlugin({
             onEnd: {
                 copy: [{
-                    source: path.resolve(__dirname, 'favicon.ico'),
+                    source: path.resolve(__dirname, 'app/images/favicon.png'),
+                    destination: path.resolve(__dirname, 'dist/')
+                },{
+                    source: path.resolve(__dirname, 'server/userList.json'),
                     destination: path.resolve(__dirname, 'dist/')
                 }]
             }
@@ -163,6 +168,7 @@ module.exports = {
         proxy: {
           '/api': {
               target: 'http://localhost:8081',
+              // target: 'http://laravel.xuehtml.com/',
               changeOrigin: true, //changeOrigin 的意思就是把 http 请求中的 Origin 字段进行变换，在浏览器接收到后端回复的时候，浏览器会以为这是本地请求，而在后端那边会以为是在站内的调用。
           }
         },
