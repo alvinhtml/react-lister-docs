@@ -8,9 +8,11 @@ import 'react-miniui/dist/miniui.css';
 // if use react-miniui Modal, import ActiveModal
 import {ActiveModal} from 'react-miniui';
 
-import './scss/style.scss';
+import './scss/main.scss';
 
 import Router from '~/routes';
+import Header from '~/components/Header';
+import Sidebar from '~/components/Sidebar';
 
 class App extends Component {
   render() {
@@ -25,7 +27,11 @@ class App extends Component {
 render(
   <BrowserRouter>
     <div>
-      <App />
+      <Header />
+      <div className="web-application">
+        <Sidebar />
+        <App />
+      </div>
       <div><ActiveModal /></div>
     </div>
   </BrowserRouter>,

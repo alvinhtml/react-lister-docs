@@ -1,0 +1,26 @@
+.header {
+  background-color: #2b3643;
+  z-index: 20;
+
+  .logo {
+    width: 235px;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    float: left;
+
+    a {
+      float: left;
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bolder;
+      color: #fff;
+      line-height: 20px;
+      font-family: optima;
+
+      span {
+        color: #f36a5a;
+      }
+    }
+  }
+}

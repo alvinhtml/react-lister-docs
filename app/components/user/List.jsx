@@ -12,11 +12,20 @@ const options = {
   resize: true // 是否允许拖动改变列宽度
 }
 
+function UserRole({user}) {
+  return user.type === 0 ? '超级管理员' : '普通用户';
+}
+
+function UserState({user}) {
+  return user.state !== 0 ? '停用' : '启用';
+}
+
 const userColumns = [
   new Column('ID', 'id', row => <React.Fragment>{row.id}</React.Fragment>, {...options, width: 60}),
   new Column('用户', 'name', row => <React.Fragment>{row.name}</React.Fragment>, {...options, getter: Column.Getter('name')}),
   new Column('邮箱', 'email', row => <span>{row.email}</span>, {...options, getter: Column.Getter('email')}),
-  new Column('角色', 'type', row => <span>{row.type}</span>, options),
+  new Column('角色', 'type', row => <UserRole user={row} />, options),
+  new Column('状态', 'type', row => <UserState user={row} />, options),
   new Column('操作', 'option', row => <UserActions row={row} />)
 ]
 

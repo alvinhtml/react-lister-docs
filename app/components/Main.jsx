@@ -5,9 +5,11 @@ import {ButtonGroup, Button} from 'react-miniui';
 export default class Header extends Component {
   render() {
     return(
-      <main className="main">
-        {this.props.children}
-      </main>
+      <section>
+        <main className="main">
+          {this.props.children}
+        </main>
+      </section>
     )
   }
 }

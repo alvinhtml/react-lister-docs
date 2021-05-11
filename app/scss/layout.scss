@@ -1,0 +1,22 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.web-application {
+  display: flex;
+  padding-top: 50px;
+
+  &>aside {
+    width: 180px;
+    flex-shrink: 0;
+  }
+
+  &>section {
+    box-sizing: border-box;
+    padding: 16px;
+  }
+}
