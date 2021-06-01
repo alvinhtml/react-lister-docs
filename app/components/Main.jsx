@@ -7,7 +7,9 @@ export default class Header extends Component {
     return(
       <section>
         <main className="main">
-          {this.props.children}
+          {
+            this.props.children
+          }
         </main>
       </section>
     )

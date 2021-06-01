@@ -4,9 +4,10 @@ import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
 // use react-miniui
 import 'react-miniui/dist/miniui.css';
+// import '../../react-miniui/dist/miniui.css';
 
 // if use react-miniui Modal, import ActiveModal
-import {ActiveModal} from 'react-miniui';
+import {Miniui} from 'react-miniui';
 
 import './scss/main.scss';
 
@@ -32,7 +33,7 @@ render(
         <Sidebar />
         <App />
       </div>
-      <div><ActiveModal /></div>
+      <Miniui />
     </div>
   </BrowserRouter>,
 document.getElementById('webApplication'))

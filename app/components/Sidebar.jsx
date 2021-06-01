@@ -14,11 +14,11 @@ export default class Header extends Component {
   render() {
     return(
       <aside className={`sidebar ${this.state.closed ? 'closed-sidebar' : ''}`}>
-        <div class="sidebar-toggle" onClick={this.handleClick.bind(this)}><i className="icon-menu"></i></div>
+        <div className="sidebar-toggle" onClick={this.handleClick.bind(this)}><i className="icon-menu"></i></div>
         <nav>
           <ul>
             <li>
-              <Link to="/home"><i className="icon-home"></i> <span>首页</span></Link>
+              <Link to="/introduction"><i className="icon-home"></i> <span>首页</span></Link>
             </li>
             <li>
               <Link to="/user"><i className="icon-user"></i> <span>用户列表</span></Link>
