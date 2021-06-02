@@ -136,7 +136,7 @@ module.exports = {
         new FileManagerPlugin({
             onEnd: {
                 copy: [{
-                    source: path.resolve(__dirname, 'app/images/favicon.png'),
+                    source: path.resolve(__dirname, 'app/images/favicon.svg'),
                     destination: path.resolve(__dirname, 'dist/')
                 },{
                     source: path.resolve(__dirname, 'server/userList.json'),
