@@ -18,10 +18,10 @@ export default class Header extends Component {
         <nav>
           <ul>
             <li>
-              <Link to="/introduction"><i className="icon-home"></i> <span>首页</span></Link>
+              <Link to="/introduction"><i className="icon-social-dropbox"></i> <span>安装使用</span></Link>
             </li>
             <li>
-              <Link to="/user"><i className="icon-user"></i> <span>用户列表</span></Link>
+              <Link to="/user"><i className="icon-people"></i> <span>用户列表示例</span></Link>
             </li>
           </ul>
         </nav>

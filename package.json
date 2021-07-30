@@ -1,5 +1,5 @@
 {
-  "name": "react-data-grider-docs",
+  "name": "react-lister-docs",
   "version": "1.0.0",
   "description": "react-miniui-cli-repository",
   "main": "index.js",
@@ -60,9 +60,10 @@
   "dependencies": {
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-lister": "^1.4.1",
-    "react-miniui": "^1.4.1",
+    "react-lister": "^1.4.3",
+    "react-miniui": "^1.5.0",
     "react-router-dom": "^5.0.0",
+    "react-syntax-highlighter": "^11.0.2",
     "superagent": "^5.1.2"
   }
 }

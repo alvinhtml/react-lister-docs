@@ -1,11 +1,15 @@
-# react-miniui-cli
+# react-lister docs
 
-react-miniui 脚手架。
+react data list. Demo: [http://lister.alvinhtml.com/](http://lister.alvinhtml.com/)
 
 ## Installation
 
 ```bash
-npm install react-miniui-cli -g
+npm install
 ```
 
-## Usage
+## Run
+
+```bash
+npm run start
+```

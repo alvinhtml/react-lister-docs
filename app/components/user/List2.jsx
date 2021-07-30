@@ -1,13 +1,9 @@
 import * as React from 'react';
-import {ButtonGroup, Button, Input, FormGroup, Dropdown, Menu, Item, Icon, Confirm, Alert} from 'react-miniui';
+import {Button} from 'react-miniui';
 
 import Lister, {Column, withLister} from 'react-lister';
 import 'react-lister/dist/lister.css';
 
-// import Lister, {Column, withLister} from '~/../../react-lister/dist/index.js';
-// import '~/../../react-lister/dist/lister.css';
-
-import UserActions from '~/components/user/UserActions';
 
 const options = {
   order: true, // 是否需要排序
@@ -16,19 +12,27 @@ const options = {
   resize: true // 是否允许拖动改变列宽度
 }
 
-function UserRole({user}) {
-  return user.type === 0 ? '超级管理员' : '普通用户';
-}
-
 function UserState({user}) {
   return user.state !== 0 ? '停用' : '启用';
+}
+
+function UserActions({user}) {
+  const handleDelete = () => {
+    console.log(user.id);
+    // 删除操作
+  }
+  return (
+    <React.Fragment>
+      <Button>编辑</Button>
+      <Button onClick={handleDelete}>删除</Button>
+    </React.Fragment>
+  )
 }
 
 const userColumns = [
   new Column('ID', 'id', row => <React.Fragment>{row.id}</React.Fragment>, {...options, width: 60}),
   new Column('用户名', 'name', row => <React.Fragment>{row.name}</React.Fragment>, {...options, getter: Column.Getter('name')}),
   new Column('邮箱', 'email', row => <span>{row.email}</span>, {...options, getter: Column.Getter('email')}),
-  new Column('角色', 'type', row => <UserRole user={row} />, options),
   new Column('状态', 'state', row => <UserState user={row} />, options),
   new Column('操作', 'option', row => <UserActions user={row} />)
 ]
@@ -48,20 +52,6 @@ class UserList extends React.Component {
     });
   };
 
-  handleChange() {
-
-  }
-
-  handleRemove() {
-    Confirm(
-      '您确定要删除所选用户吗？',
-      () => {
-        Alert('删除成功！')
-      },
-      <Button color="red">删除1111</Button>
-    )
-  }
-
   render() {
     const {toggleSelectAll, rows, reload, createRef, columns, total} = this.props;
     const {selectedIDs} = this.state;
@@ -78,24 +68,13 @@ class UserList extends React.Component {
           onSelect={this.handleSelect}
           reload={reload}
         >
-          <ButtonGroup>
-            <Button onClick={toggleSelectAll}>全选</Button>
-          </ButtonGroup>
-          <FormGroup>
-            <Button onClick={this.handleRemove.bind(this)}>删除{selectedIDs.length ? `(${selectedIDs.length})` : ''}</Button>
-            <Button>停用{selectedIDs.length ? `(${selectedIDs.length})` : ''}</Button>
-            <Dropdown name="phone" value="iphone" onChange={this.handleChange.bind(this)}>
-        			<Button>更多 <Icon icon="fa-down-dir" /></Button>
-        			<Menu dropArrow={true}>
-        				<Item value="iphone">启用</Item>
-        				<Item value="ipad">设为超级管理员</Item>
-        			</Menu>
-        		</Dropdown>
-          </FormGroup>
+          <Button onClick={toggleSelectAll}>全选</Button>
+          <Button color="red">删除</Button>
         </Lister>
       </div>
     );
   }
 }
 
+// 通过高阶组件将 UserList 和 userColumns 接合
 export default withLister(UserList, 'user', userColumns);

@@ -24,6 +24,28 @@ header {
   }
 }
 
+
+
+main {
+  h1, h2, h3, h4 {
+    margin-bottom: 1em;
+  }
+
+  code {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  ul {
+    margin: 1em 0;
+    padding-left: 2em;
+
+    &.check-list i {
+      color: #38c060;
+    }
+  }
+}
+
 .flex {
   .flex-control-label {
     width: 80px;
