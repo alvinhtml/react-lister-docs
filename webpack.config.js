@@ -6,7 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离 css 文件，使用这个插件需要单独配置JS和CSS压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin') // 压缩JS
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin') // 压缩CSS
-const FileManagerPlugin = require('filemanager-webpack-plugin'); // webpack copy move delete mkdir archive
+const FileManagerPlugin = require('filemanager-webpack-plugin') // webpack copy move delete mkdir archive
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 // console.log(path.resolve(__dirname, '~/'));
 
@@ -148,7 +149,7 @@ module.exports = {
         new webpack.DefinePlugin({
             DEV: JSON.stringify('dev'),
         }),
-
+        new BundleAnalyzerPlugin()
     ],
 
     // watch: true,
