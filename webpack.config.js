@@ -149,7 +149,7 @@ module.exports = {
         new webpack.DefinePlugin({
             DEV: JSON.stringify('dev'),
         }),
-        new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin()
     ],
 
     // watch: true,
